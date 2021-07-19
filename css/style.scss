@@ -1,5 +1,117 @@
 body{
 	padding: 0;
 	margin: 0;
+	position: relative;
 }
 
+@keyframes spin {
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rev-spin {
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(-360deg);
+	}
+}
+
+.load_scren{
+	&.load{
+		opacity: 1;
+		visibility: visible;
+	}
+	z-index: 20;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #0e1d1d;
+	width: 100%;
+	min-height: 100vh;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 1.5s, visibility 0s ease 1.5s;
+	.wrap{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: #0e1d1d;
+		width: 100%;
+		// min-height: 100vh;
+			-webkit-box-reflect: below 1px linear-gradient(#0002, #0004);
+		.loader{
+			position: relative;
+			width: 230px;
+			height: 230px;
+			// width: 200px;
+			// height: 200px;
+			border-radius: 50%;
+			background: #0d2323;
+			animation: spin 2.5s linear infinite;
+			&:before{
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 50%;
+				height: 100%;
+				background: linear-gradient(to top, transparent, rgba(0, 255,249,0.4));
+				// background-size: 150px 180px;
+				background-size: calc(230px/2) calc(230px*0.9);
+				background-repeat: no-repeat;
+				border-top-left-radius: calc(230px/2);
+				border-bottom-left-radius: calc(230px/2);
+				// border-top-left-radius: 100px;
+				// border-bottom-left-radius: 100px;
+			}
+			&:after{
+				content: '';
+				position: absolute;
+				left: 50%;
+				top: 0;
+				transform: translateX(-50%);
+				width: 7%;
+				height: 7%;
+				background: #00fff9;
+				border-radius: 50%;
+				z-index: 30;
+				box-shadow: 0 0 10px #00fff9, 
+								0 0 20px #00fff9, 
+								0 0 30px #00fff9, 
+								0 0 40px #00fff9, 
+								0 0 50px #00fff9, 
+								0 0 60px #00fff9, 
+								0 0 70px #00fff9, 
+								0 0 80px #00fff9, 
+								0 0 90px #00fff9, 
+								0 0 100px #00fff9;
+			}
+			span{
+				color: #fff;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 18px;
+				font-family: sans-serif;
+				font-weight: 600;
+				animation: rev-spin 2.5s linear infinite;
+				left: 7%;
+				top: 7%;
+				width: 86%;
+				height: 86%;
+				position: absolute;
+				border-radius: 100%;
+				background: #0d2323;
+			}
+		}
+	}
+}

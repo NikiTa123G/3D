@@ -1,3 +1,9 @@
+let loadScren = document.querySelector('.load_scren');
+
+// document.addEventListener("DOMContentLoaded", function() {
+// 	loadScren.classList.remove('load');
+// });
+
 scene =  new THREE.Scene();
 camera =  new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.x = 3;
@@ -5,7 +11,7 @@ camera.position.y = 3;
 camera.position.z = 3;
 
 renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
-renderer.setClearColor(0x000000, 0);
+renderer.setClearColor(0x333333, 1);
 renderer.setSize(window.innerWidth,window.innerHeight);
 
 renderer.domElement.setAttribute("id", "model");
@@ -26,11 +32,15 @@ controls.minDistanse = 10000;
 
 let loader = new THREE.GLTFLoader();
 let obj = null;
+
 loader.load('mdl/scene.gltf', function(gltf){
 	obj = gltf;
 	obj.scene.scale.set(1,1,1);
 	scene.add(obj.scene);
+	loadScren.classList.remove('load');
+	// console.log('dffd');
 });
+
 function animate() {
 	requestAnimationFrame(animate);
 	controls.update();
